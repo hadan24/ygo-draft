@@ -3,7 +3,7 @@ use serde_derive::Deserialize;
 use serde_json::Value;
 
 #[derive(Deserialize, Debug)]
-struct Card {
+struct YGOProQuery {
     data: Vec<HashMap<String, Value>>
 }
 
@@ -12,8 +12,8 @@ fn main() {
     let req = String::from(url) + "name=Tornado Dragon";
 
     let resp = reqwest::blocking::get(req).unwrap();
-    let card: Card = resp.json().unwrap();
+    let cards: YGOProQuery = resp.json().unwrap();
 
     println!("Hello, world!");
-    dbg!(card.data);
+    dbg!(cards.data);
 }
