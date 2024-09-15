@@ -30,6 +30,7 @@ Besides the appropriate docs
 - [Joshua Mo, shuttle.rs, Axum guide](https://www.shuttle.rs/blog/2023/12/06/using-axum-rust)
 - No Boilerplate Yew intro/overview [1](https://www.youtube.com/watch?v=P4LMfkFLRsI) | [2](https://www.youtube.com/watch?v=y10jJX35shE)
 - [Team Gyata Yew guide](https://www.gyata.ai/rust/yew)
+- [Code to the Moon Yew guide](https://youtu.be/MddGbXgIt2E?si=Ym1f2H2EogmTU2Kg)
 
 ### Example Deck Stats
 For whenever I get to them:
