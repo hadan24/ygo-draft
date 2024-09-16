@@ -39,6 +39,7 @@ For whenever I get to them:
 - Main Deck Monster subtype ratio (Tuner/Spirit/etc)
 - Extra Deck Monster ratio
 - Extra Deck Level/Rank ratio (Synchros/XYZ/Links only)
+- Link Monsters w/ bottom markers (warn if >1 Links in deck but 0 w/ bottom markers)
 
 ### Draft Balancing Rules
 For whenever I get to them:
