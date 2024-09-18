@@ -11,8 +11,8 @@ pub struct Card {
     #[serde(alias="frameType")]
     pub card_type:   CardType,
 
-    pub atk:         Option<u32>,
-    pub def:         Option<u32>,
+    pub atk:         Option<i32>,
+    pub def:         Option<i32>,
     pub attribute:   Option<Attribute>,
     pub level:       Option<u32>,
     pub linkval:     Option<u32>,
