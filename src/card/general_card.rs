@@ -4,8 +4,9 @@ use serde_derive::Deserialize;
 pub struct Card {
     pub name:        String,
     pub desc:        String,
-    pub card_images: Vec<CardImage>,
 
+    #[serde(alias="card_images")]
+    pub images: Vec<CardImage>,
     #[serde(alias="race")]
     pub game_type:   GameType,
     #[serde(alias="frameType")]
