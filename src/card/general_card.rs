@@ -4,9 +4,8 @@ use serde_derive::Deserialize;
 pub struct Card {
     pub name:        String,
     pub desc:        String,
+    pub card_images: Vec<CardImage>,
 
-    #[serde(alias="card_images")]
-    pub images: Vec<CardImage>,
     #[serde(alias="race")]
     pub game_type:   GameType,
     #[serde(alias="frameType")]
@@ -25,16 +24,6 @@ pub struct CardImage {
     pub image_url: String,
     pub image_url_small: String,
     pub image_url_cropped: String
-}
-
-#[derive(Debug, Deserialize)]
-pub enum Attribute {
-    #[serde(alias="FIRE")]  Fire,
-    #[serde(alias="WATER")] Water,
-    #[serde(alias="EARTH")] Earth,
-    #[serde(alias="WIND")]  Wind,
-    #[serde(alias="DARK")]  Dark,
-    #[serde(alias="LIGHT")] Light
 }
 
 #[derive(Debug, Deserialize)]
@@ -86,6 +75,16 @@ pub enum CardType {
     #[serde(alias="link")]      Link,
     #[serde(alias="spell")]     Spell,
     #[serde(alias="trap")]      Trap
+}
+
+#[derive(Debug, Deserialize)]
+pub enum Attribute {
+    #[serde(alias="FIRE")]  Fire,
+    #[serde(alias="WATER")] Water,
+    #[serde(alias="EARTH")] Earth,
+    #[serde(alias="WIND")]  Wind,
+    #[serde(alias="DARK")]  Dark,
+    #[serde(alias="LIGHT")] Light
 }
 
 #[derive(Debug, Deserialize)]
