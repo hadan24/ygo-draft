@@ -1,6 +1,10 @@
 use super::general_card::
     {Attribute, Card, CardImage, CardType, GameType, LinkMarker};
-use super::Error;
+
+#[derive(Debug)]
+pub enum Error {
+    MismatchedCardType(String),
+}
 
 #[derive(Debug)]
 pub enum DraftedCard {
@@ -74,19 +78,19 @@ impl MonsterCard {
             card_type: Self::match_card_type(c.card_type)?,
             attack: match c.atk {
                 Some(atk) => atk,
-                None => todo!()
+                None => todo!("Return error")
             },
             defense: match c.def {
                 Some(def) => def,
-                None => todo!()
+                None => todo!("Return error")
             },
             attribute: match c.attribute {
                 Some(att) => att,
-                None => todo!()
+                None => todo!("Return error")
             },
             level: match c.level {
                 Some(lvl) => lvl,
-                None => todo!()
+                None => todo!("Return error")
             },
             linkval: c.linkval,
             linkmarkers: c.linkmarkers,
