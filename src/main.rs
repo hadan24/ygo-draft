@@ -10,5 +10,7 @@ fn main() {
         + "Number F0: Utopic Future";   // test w/ no Level/Rank
 
     let cards = ygo_draft::get_cards(&req);
-    dbg!(cards.data);
+    for c in cards.data {
+        dbg!(c);
+    }
 }

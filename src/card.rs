@@ -1,15 +1,16 @@
 use serde_derive::Deserialize;
 
-#[derive(Debug, Deserialize)]
+#[derive(Clone, Debug, Deserialize)]
 pub struct Card {
     pub name:        String,
-    pub desc:        String,
     pub card_images: Vec<CardImage>,
+/*
+    pub desc:        String,
 
-    #[serde(alias="race")]
-    pub game_type:   GameType,
     #[serde(alias="frameType")]
     pub card_type:   CardType,
+    #[serde(alias="race")]
+    pub game_type:   GameType,
 
     pub atk:         Option<i32>,
     pub def:         Option<i32>,
@@ -17,15 +18,15 @@ pub struct Card {
     pub level:       Option<u32>,
     pub linkval:     Option<u32>,
     pub linkmarkers: Option<Vec<LinkMarker>>,
+*/
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Clone, Debug, Deserialize)]
 pub struct CardImage {
     pub image_url: String,
     pub image_url_small: String,
-    pub image_url_cropped: String
 }
-
+/*
 #[derive(Debug, Deserialize)]
 pub enum GameType {
     Aqua,
@@ -98,3 +99,4 @@ pub enum LinkMarker {
     #[serde(alias="Top-Left")]      TopLeft,
     #[serde(alias="Top-Right")]     TopRight
 }
+*/
