@@ -1,6 +1,6 @@
-use serde_derive::Deserialize;
+use serde_derive::{Deserialize, Serialize};
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Clone, Debug, Deserialize, Serialize)]
 pub struct Card {
     pub name:        String,
     pub card_images: Vec<CardImage>,
@@ -21,7 +21,7 @@ pub struct Card {
 */
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Clone, Debug, Deserialize, Serialize)]
 pub struct CardImage {
     pub image_url: String,
     pub image_url_small: String,

@@ -1,9 +1,9 @@
-use serde_derive::Deserialize;
+use serde_derive::{Deserialize, Serialize};
 use std::error::Error;
 
 mod card;
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Serialize)]
 pub struct YGOProResponse { pub data: Vec<card::Card> }
 
 pub async fn get_cards(req: &str) -> Result<YGOProResponse, Box<dyn Error>> {
