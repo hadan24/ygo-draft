@@ -26,11 +26,12 @@ Number  | Goal      | Timeline      | Notes
 Besides the appropriate docs
 - [YGOPRODeck API guide](https://ygoprodeck.com/api-guide/)
 - [Rust Cookbook, web APIs](https://rust-lang-nursery.github.io/rust-cookbook/web/clients/apis.html)
+- [Axum docs](https://docs.rs/axum/latest/axum/)
 - [Team Gyata Axum guide](https://www.gyata.ai/rust/axum)
 - [Joshua Mo, shuttle.rs, Axum guide](https://www.shuttle.rs/blog/2023/12/06/using-axum-rust)
-- No Boilerplate Yew intro/overview [1](https://www.youtube.com/watch?v=P4LMfkFLRsI) | [2](https://www.youtube.com/watch?v=y10jJX35shE)
+- [Yew docs](https://yew.rs/docs/concepts/function-components)
+- [No Boilerplate Yew intro/overview](https://www.youtube.com/watch?v=P4LMfkFLRsI)
 - [Team Gyata Yew guide](https://www.gyata.ai/rust/yew)
-- [Code to the Moon Yew guide](https://youtu.be/MddGbXgIt2E?si=Ym1f2H2EogmTU2Kg)
 
 ### Example Deck Stats
 For whenever I get to them:
