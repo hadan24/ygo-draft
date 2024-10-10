@@ -10,9 +10,9 @@ This is a personal project to solidify and improve on my skills from university 
 Number  | Goal      | Timeline      | Notes
 --|-----------------|---------------|--------
 1 | Learn API       | 9/11 - 9/20   | - lost 2 days to VSCode troubleshooting 💀 <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/1)
-2 | Display cards   | 9/23 - 10/4   |
-3 | Drafting        | 10/7 - 10/18  |
-4 | Set up routes   | 10/21 - 11/1  |
+2 | Display cards   | 9/23 - 10/18  | - lost 1 week to sickness 🙃, schedule adjusted
+3 | Drafting        | 10/21 - 11/1  |
+4 | Route Frontends | 11/4 - 11/15  |
 
 #### Stretch Goals
 Number  | Goal      | Timeline      | Notes
