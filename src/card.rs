@@ -1,5 +1,6 @@
 use serde_derive::Serialize;
 use crate::queries::ResponseCard;
+use rand::{self, Rng};
 
 #[derive(Clone, Debug, Serialize)]
 pub struct Card {
@@ -30,6 +31,34 @@ impl CardPool {
             main_deck:  main.into_iter().map(Card::new).collect(),
             extra_deck: extra.into_iter().map(Card::new).collect()
         }
+    }
+    
+    pub fn generate_main_deck_options(self: &CardPool) -> (Card, Card, Card) {
+        let mut rng = rand::thread_rng();
+        let pool = &self.main_deck;
+
+        let mut i_s = [rng.gen_range(0..pool.len()), 0, 0];
+        
+        while i_s[0] == i_s[1] || i_s[0] == i_s[2] || i_s[1] == i_s[2] {
+            i_s[1] = rng.gen_range(0..pool.len());
+            i_s[2] = rng.gen_range(0..pool.len());
+        }
+        
+        (pool[i_s[0]].clone(), pool[i_s[1]].clone(), pool[i_s[2]].clone())
+    }
+    
+    pub fn generate_extra_deck_options(self: &CardPool) -> (Card, Card, Card) {
+        let mut rng = rand::thread_rng();
+        let pool = &self.extra_deck;
+
+        let mut i_s = [rng.gen_range(0..pool.len()), 0, 0];
+        
+        while i_s[0] == i_s[1] || i_s[0] == i_s[2] || i_s[1] == i_s[2] {
+            i_s[1] = rng.gen_range(0..pool.len());
+            i_s[2] = rng.gen_range(0..pool.len());
+        }
+        
+        (pool[i_s[0]].clone(), pool[i_s[1]].clone(), pool[i_s[2]].clone())
     }
 }
 /*
