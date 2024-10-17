@@ -1,12 +1,12 @@
 use axum::{response::IntoResponse, routing::get, Json, Router};
-use ygo_draft::{get_cards, CardPool};
+use ygo_draft::CardPool;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
-    let pool = CardPool::new(get_cards().await?);
-    let main_opts = pool.generate_main_deck_options();
-    let extra_opts = pool.generate_extra_deck_options();
+    let pool = CardPool::new().await?;
+    let main_opts = CardPool::generate_draft_options(&pool.main_deck);
+    let extra_opts = CardPool::generate_draft_options(&pool.extra_deck);
     
     let tcp_listener = tokio::net::TcpListener::bind("127.0.0.1:8080")
         .await.unwrap();

@@ -1,5 +1,5 @@
-mod card;
 mod queries;
+mod card;
 
-pub use card::CardPool;
 pub use queries::*;
+pub use card::CardPool;

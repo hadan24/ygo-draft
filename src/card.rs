@@ -1,11 +1,11 @@
+use std::error::Error;
 use serde_derive::Serialize;
-use crate::queries::ResponseCard;
-use rand::{self, Rng};
+use crate::queries::{ResponseCard, get_cards};
 
 #[derive(Clone, Debug, Serialize)]
 pub struct Card {
-    name: String,
-    img_link: String
+    pub name: String,
+    pub img_link: String
 }
 
 impl Card {
@@ -24,41 +24,24 @@ pub struct CardPool {
 }
 
 impl CardPool {
-    pub fn new((main, extra): (Vec<ResponseCard>, Vec<ResponseCard>))
-        -> Self
-    {
-        CardPool {
-            main_deck:  main.into_iter().map(Card::new).collect(),
-            extra_deck: extra.into_iter().map(Card::new).collect()
-        }
+    pub async fn new() -> Result<Self, Box<dyn Error>> {
+        let (main_deck, extra_deck) = get_cards().await?;
+
+        Ok(CardPool {
+            main_deck:  main_deck.into_iter().map(Card::new).collect(),
+            extra_deck: extra_deck.into_iter().map(Card::new).collect()
+        })
     }
     
-    pub fn generate_main_deck_options(self: &CardPool) -> (Card, Card, Card) {
+    pub fn generate_draft_options(pool: &[Card]) -> (Card, Card, Card) {
         let mut rng = rand::thread_rng();
-        let pool = &self.main_deck;
+        let i_s = rand::seq::index::sample(&mut rng, pool.len(), 3);
 
-        let mut i_s = [rng.gen_range(0..pool.len()), 0, 0];
-        
-        while i_s[0] == i_s[1] || i_s[0] == i_s[2] || i_s[1] == i_s[2] {
-            i_s[1] = rng.gen_range(0..pool.len());
-            i_s[2] = rng.gen_range(0..pool.len());
-        }
-        
-        (pool[i_s[0]].clone(), pool[i_s[1]].clone(), pool[i_s[2]].clone())
-    }
-    
-    pub fn generate_extra_deck_options(self: &CardPool) -> (Card, Card, Card) {
-        let mut rng = rand::thread_rng();
-        let pool = &self.extra_deck;
-
-        let mut i_s = [rng.gen_range(0..pool.len()), 0, 0];
-        
-        while i_s[0] == i_s[1] || i_s[0] == i_s[2] || i_s[1] == i_s[2] {
-            i_s[1] = rng.gen_range(0..pool.len());
-            i_s[2] = rng.gen_range(0..pool.len());
-        }
-        
-        (pool[i_s[0]].clone(), pool[i_s[1]].clone(), pool[i_s[2]].clone())
+        (
+            pool[i_s.index(0)].clone(),
+            pool[i_s.index(1)].clone(),
+            pool[i_s.index(2)].clone()
+        )
     }
 }
 /*

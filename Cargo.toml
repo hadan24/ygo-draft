@@ -7,7 +7,7 @@ edition = "2021"
 
 [dependencies]
 axum = { version = "0.7.7", features = ["macros"] }
-rand = "0.8.5"
+rand = { version = "0.8.5", features = ["alloc"] }
 reqwest = { version = "0.12.8", features = ["json"] }
 serde = "1.0.210"
 serde_derive = "1.0.210"
