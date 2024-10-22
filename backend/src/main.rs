@@ -1,5 +1,5 @@
 use axum::{response::IntoResponse, routing::get, Json, Router};
-use ygo_draft::CardPool;
+use ygo_draft_server::CardPool;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {

@@ -1,5 +1,5 @@
 use std::error::Error;
-use serde_derive::{Deserialize, Serialize};
+use serde::{Deserialize, Serialize};
 use reqwest::Client;
 
 #[derive(Clone, Debug, Deserialize, Serialize)]

@@ -1,5 +1,5 @@
 use std::error::Error;
-use serde_derive::Serialize;
+use serde::Serialize;
 use crate::queries::{ResponseCard, get_cards};
 
 #[derive(Clone, Debug, Serialize)]
