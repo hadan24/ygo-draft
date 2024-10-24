@@ -10,16 +10,17 @@ Number  | Goal      | Timeline      | Notes
 --|-----------------|---------------|--------
 1 | Learn API       | 9/11 - 9/20   | - lost 2 days to VSCode troubleshooting 💀 <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/1)
 2 | Display cards   | 9/23 - 10/18  | - lost 3 weeks to sickness 🙃, schedule adjusted <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/2)
-3 | Finalize API v1 | 10/21 - 11/1  | - change of plans to SPA w/ simple API, schedule adjusted
-4 | Drafting        | 11/4 - 11/22  | 
-5 | Finish Routes   | 11/25 - 12/13 |
+3 | Finalize API v1 | 10/21 - 10/25 | - change of plans to SPA w/ simple API, schedule adjusted
+4 | Tracing/Errors  | 10/28 - 11/1  |
+5 | Drafting        | 11/4 - 11/22  | 
+6 | Finish Routes   | 11/25 - 12/13 |
 
 #### Stretch Goals
 Number  | Goal      | Timeline      | Notes
 --|-----------------|---------------|--------
 1 | Deck stats      | TBD           |
 2 | Balance draft   | TBD           |
-3 | Deck exporting  | TBD           | - export to YDK will be included as part of Goal 5
+3 | Deck exporting  | TBD           | - export to YDK will be included as part of Goal 6
 4 | DB integration  | TBD           |
 
 ### Resources for Myself
