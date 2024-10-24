@@ -1,8 +1,8 @@
 use std::error::Error;
-use serde::{Deserialize, Serialize};
+use serde::Deserialize;
 use reqwest::Client;
 
-#[derive(Clone, Debug, Deserialize, Serialize)]
+#[derive(Clone, Debug, Deserialize)]
 pub struct ResponseCard {
     pub id:          u32,
     pub name:        String,
@@ -24,7 +24,7 @@ pub struct ResponseCard {
 */
 }
 
-#[derive(Clone, Debug, Deserialize, Serialize)]
+#[derive(Clone, Debug, Deserialize)]
 pub struct CardImage {
     pub image_url: String,
     pub image_url_small: String,
@@ -82,7 +82,7 @@ pub enum CardType {
 }
 */
 
-#[derive(Debug, Default, Deserialize, Serialize)]
+#[derive(Debug, Default, Deserialize)]
 struct YGOProResponse { data: Vec<ResponseCard> }
 
 /* simple query function to test w/, to be commented out
@@ -108,8 +108,8 @@ pub async fn get_cards_test() -> Result<Vec<ResponseCard>, Box<dyn Error>> {
 }
 */
 
-pub async fn get_cards() ->
-    Result<(Vec<ResponseCard>, Vec<ResponseCard>), Box<dyn Error>>
+pub async fn get_cards()
+    -> Result<(Vec<ResponseCard>, Vec<ResponseCard>), Box<dyn Error>>
 {
     let url = "https://db.ygoprodeck.com/api/v7/cardinfo.php?";
     let client = reqwest::Client::new();

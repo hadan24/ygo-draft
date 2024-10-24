@@ -19,11 +19,12 @@ impl Card {
     }
 }
 
-#[derive(Debug, Default, Serialize)]
+#[derive(Clone, Debug, Default)]
 pub struct CardPool {
     pub main_deck:  Vec<Card>,
     pub extra_deck: Vec<Card>,
 }
+pub type DraftOptions = [Card; 3];
 
 impl CardPool {
     pub async fn new() -> Result<Self, Box<dyn Error>> {
@@ -35,15 +36,15 @@ impl CardPool {
         })
     }
     
-    pub fn generate_draft_options(pool: &[Card]) -> (Card, Card, Card) {
+    pub fn generate_draft_options(pool: &[Card]) -> DraftOptions {
         let mut rng = rand::thread_rng();
         let i_s = rand::seq::index::sample(&mut rng, pool.len(), 3);
 
-        (
+        [
             pool[i_s.index(0)].clone(),
             pool[i_s.index(1)].clone(),
             pool[i_s.index(2)].clone()
-        )
+        ]
     }
 }
 /*
