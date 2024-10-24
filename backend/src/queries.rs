@@ -4,6 +4,7 @@ use reqwest::Client;
 
 #[derive(Clone, Debug, Deserialize, Serialize)]
 pub struct ResponseCard {
+    pub id:          u32,
     pub name:        String,
     pub card_images: Vec<CardImage>,
 /*

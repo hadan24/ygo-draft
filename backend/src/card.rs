@@ -4,13 +4,15 @@ use crate::queries::{ResponseCard, get_cards};
 
 #[derive(Clone, Debug, Serialize)]
 pub struct Card {
-    pub name: String,
+    pub id:     u32,
+    pub name:   String,
     pub img_link: String
 }
 
 impl Card {
     pub fn new(c: ResponseCard) -> Self {
         Card {
+            id: c.id,
             name: c.name,
             img_link: c.card_images[0].image_url.clone()
         }
