@@ -10,18 +10,19 @@ Number  | Goal      | Timeline      | Notes
 --|-----------------|---------------|--------
 1 | Learn API       | 9/11 - 9/20   | - lost 2 days to VSCode troubleshooting 💀 <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/1)
 2 | Display cards   | 9/23 - 10/18  | - lost 3 weeks to sickness 🙃, schedule adjusted <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/2)
-3 | Finalize API v1 | 10/21 - 10/25 | - change of plans to SPA w/ simple API, schedule adjusted
-4 | Tracing/Errors  | 10/28 - 11/1  |
-5 | Drafting        | 11/4 - 11/22  | 
-6 | Finish Routes   | 11/25 - 12/13 |
+3 | Finalize API v1 | 10/21 - 10/25 | - change of plans to SPA w/ simple API, schedule adjusted <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/12)
+4 | Tracing/Errors  | 10/28 - 11/1  | <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/13)
+5 | Drafting        | 11/4 - 11/22  | <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/3)
+6 | Finish Routes   | 11/25 - 12/13 | <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/11)
 
 #### Stretch Goals
 Number  | Goal      | Timeline      | Notes
 --|-----------------|---------------|--------
-1 | Deck stats      | TBD           |
-2 | Balance draft   | TBD           |
-3 | Deck exporting  | TBD           | - export to YDK will be included as part of Goal 6
-4 | DB integration  | TBD           |
+1 | Deck stats      | TBD           | <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/5)
+2 | Balance draft   | TBD           | <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/6)
+3 | Deck exporting  | TBD           | - export to YDK will be included as part of Goal 6 <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/7)
+4 | DB integration  | TBD           | <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/8)
+5 | Deploy          | TBD           | <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/10)
 
 ### Resources for Myself
 Besides the appropriate docs
@@ -34,6 +35,7 @@ Besides the appropriate docs
 - Team Gyata guides [Axum](https://www.gyata.ai/rust/axum) | [Yew](https://www.gyata.ai/rust/yew)
 - Brooks Builds tutorials [Axum](https://www.youtube.com/playlist?list=PLrmY5pVcnuE-_CP7XZ_44HN-mDrLQV4nS) | [Yew](https://www.youtube.com/playlist?list=PLrmY5pVcnuE_R5qJ0o30eGw77bWmnrUtL)
 - [Rust `image` docs for eventual/possible DB setup](https://docs.rs/image/latest/image/)
+- [Overview of an Axum/Yew](https://robert.kra.hn/posts/2022-04-03_rust-web-wasm/)
 
 ### Example Deck Stats
 For whenever I get to them:
