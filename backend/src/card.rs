@@ -1,5 +1,6 @@
 use std::error::Error;
 use serde::Serialize;
+use tracing::{debug, trace};
 use crate::queries::{ResponseCard, get_cards};
 
 #[derive(Clone, Debug, Serialize)]
@@ -38,13 +39,17 @@ impl CardPool {
     
     pub fn generate_draft_options(pool: &[Card]) -> DraftOptions {
         let mut rng = rand::thread_rng();
-        let i_s = rand::seq::index::sample(&mut rng, pool.len(), 3);
+        let i_s = rand::seq::index::sample(&mut rng, pool.len(), 3)
+            .into_vec();
+        let options = [
+            pool[i_s[0]].clone(),
+            pool[i_s[1]].clone(),
+            pool[i_s[2]].clone()
+        ];
 
-        [
-            pool[i_s.index(0)].clone(),
-            pool[i_s.index(1)].clone(),
-            pool[i_s.index(2)].clone()
-        ]
+        debug!("indices: {}, {}, {}", i_s[0], i_s[1], i_s[2]);
+        trace!("card names: {:?}", options);
+        options
     }
 }
 /*

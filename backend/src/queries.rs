@@ -1,6 +1,7 @@
 use std::error::Error;
 use serde::Deserialize;
 use reqwest::Client;
+use tracing::{info, instrument, trace};
 
 #[derive(Clone, Debug, Deserialize)]
 pub struct ResponseCard {
@@ -114,67 +115,92 @@ pub async fn get_cards()
     let url = "https://db.ygoprodeck.com/api/v7/cardinfo.php?";
     let client = reqwest::Client::new();
 
+    info!("updating card database");
     let main_deck   = get_main(&client, url).await?;
     let extra_deck  = get_extra(&client, url).await?;
 
     Ok((main_deck, extra_deck))
 }
 
+#[instrument]
 async fn get_main(client: &Client, url: &str)
     -> Result<Vec<ResponseCard>, Box<dyn Error>>
 {
+    info!("getting normal monsters");
     let normals = client.get(url)
         .query(&[("level", "lte4"), ("type", "Normal Monster"), ("atk", "gte1900")])
         .send().await?
         .json::<YGOProResponse>().await?
         .data;
+    trace!("number of normal monsters: {}", normals.len());
+
+    info!("getting effect monsters");
     let effects = client.get(url)
         .query(&[("level", "lte4"), ("type", "Effect Monster")])
         .send().await?
         .json::<YGOProResponse>().await?
         .data;
+    trace!("number of effect monsters: {}", effects.len());
+
+    info!("getting spells");
     let spells = client.get(url)
         .query(&[("type", "Spell Card")])
         .send().await?
         .json::<YGOProResponse>().await?
         .data;
+    trace!("number of spells: {}", spells.len());
+
+    info!("getting traps");
     let traps = client.get(url)
         .query(&[("type", "Trap Card")])
         .send().await?
         .json::<YGOProResponse>().await?
         .data;
+    trace!("number of traps: {}", traps.len());
 
-        let mut main = normals;
-        main.extend(effects.into_iter());
-        main.extend(spells.into_iter());
-        main.extend(traps.into_iter());
+    let mut main = normals;
+    main.extend(effects.into_iter());
+    main.extend(spells.into_iter());
+    main.extend(traps.into_iter());
 
-        Ok(main)
+    Ok(main)
 }
 
+#[instrument]
 async fn get_extra(client: &Client, url: &str)
     -> Result<Vec<ResponseCard>, Box<dyn Error>>
 {
+    info!("getting fusion monsters");
     let fusions = client.get(url)
         .query(&[("type", "Fusion Monster")])
         .send().await?
         .json::<YGOProResponse>().await?
         .data;
+    trace!("number of fusion monsters: {}", fusions.len());
+
+    info!("getting synchro monsters");
     let synchros = client.get(url)
         .query(&[("type", "Synchro Monster")])
         .send().await?
         .json::<YGOProResponse>().await?
         .data;
+    trace!("number of synchro monsters: {}", synchros.len());
+
+    info!("getting xyz monsters");
     let xyzs = client.get(url)
         .query(&[("type", "Xyz Monster")])
         .send().await?
         .json::<YGOProResponse>().await?
         .data;
+    trace!("number of xyz monsters: {}", xyzs.len());
+
+    info!("getting link monsters");
     let links = client.get(url)
         .query(&[("type", "Link Monster")])
         .send().await?
         .json::<YGOProResponse>().await?
         .data;
+    trace!("number of link monsters: {}", links.len());
 
     let mut extra = fusions;
     extra.extend(synchros.into_iter());
