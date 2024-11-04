@@ -26,16 +26,18 @@ Number  | Goal      | Timeline      | Notes
 
 ### Resources for Myself
 Besides the appropriate docs
-- [YGOPRODeck API guide](https://ygoprodeck.com/api-guide/)
+- [YGOPRODeck API guide](https://ygoprodeck.com/api-guide)
 - [Rust Cookbook, web APIs](https://rust-lang-nursery.github.io/rust-cookbook/web/clients/apis.html)
-- [Axum docs](https://docs.rs/axum/latest/axum/)
+- [Axum docs](https://docs.rs/axum/latest/axum)
 - [Joshua Mo, shuttle.rs, Axum guide](https://www.shuttle.rs/blog/2023/12/06/using-axum-rust)
 - [Yew docs](https://yew.rs/docs/concepts/function-components)
 - [No Boilerplate Yew intro/overview](https://www.youtube.com/watch?v=P4LMfkFLRsI)
 - Team Gyata guides [Axum](https://www.gyata.ai/rust/axum) | [Yew](https://www.gyata.ai/rust/yew)
 - Brooks Builds tutorials [Axum](https://www.youtube.com/playlist?list=PLrmY5pVcnuE-_CP7XZ_44HN-mDrLQV4nS) | [Yew](https://www.youtube.com/playlist?list=PLrmY5pVcnuE_R5qJ0o30eGw77bWmnrUtL)
-- [Rust `image` docs for eventual/possible DB setup](https://docs.rs/image/latest/image/)
-- [Overview of an Axum/Yew](https://robert.kra.hn/posts/2022-04-03_rust-web-wasm/)
+- [Rust `image` docs for eventual/possible DB setup](https://docs.rs/image/latest/image)
+- [Overview of a typical(?) Axum/Yew server](https://robert.kra.hn/posts/2022-04-03_rust-web-wasm)
+- Tracing [crate](https://docs.rs/tracing/latest/tracing) | [subscriber](https://docs.rs/tracing-subscriber/latest/tracing_subscriber)
+
 
 ### Example Deck Stats
 For whenever I get to them:
