@@ -11,9 +11,9 @@ Number  | Goal      | Timeline      | Notes
 1 | Learn API       | 9/11 - 9/20   | - lost 2 days to VSCode troubleshooting 💀 <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/1)
 2 | Display cards   | 9/23 - 10/18  | - lost 3 weeks to sickness 🙃, schedule adjusted <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/2)
 3 | Finalize API v1 | 10/21 - 10/25 | - change of plans to SPA w/ simple API, schedule adjusted <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/12)
-4 | Tracing/Errors  | 10/28 - 11/1  | <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/13)
-5 | Drafting        | 11/4 - 11/22  | <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/3)
-6 | Finish Routes   | 11/25 - 12/13 | <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/11)
+4 | Tracing/Errors  | 10/28 - 11/8  | - election stress and other sadness :'), schedule adjusted<br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/13)
+5 | Drafting        | 11/11 - 11/29 | <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/3)
+6 | Finish Routes   | 12/2 - 12/20  | <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/11)
 
 #### Stretch Goals
 Number  | Goal      | Timeline      | Notes
