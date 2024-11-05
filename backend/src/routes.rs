@@ -35,3 +35,29 @@ pub async fn get_extra_opts(State(pool): State<CardPool>)
 pub async fn handler_404() -> Response {
     (StatusCode::NOT_FOUND, "404 Not Found :(").into_response()
 }
+
+// taken from axum example:
+// https://github.com/tokio-rs/axum/blob/main/examples/graceful-shutdown/
+pub async fn shutdown() {
+    let ctrl_c = async {
+        tokio::signal::ctrl_c()
+            .await
+            .expect("failed to install Ctrl+C handler");
+    };
+
+    #[cfg(unix)]
+    let terminate = async {
+        signal::unix::signal(signal::unix::SignalKind::terminate())
+            .expect("failed to install signal handler")
+            .recv()
+            .await;
+    };
+
+    #[cfg(not(unix))]
+    let terminate = std::future::pending::<()>();
+
+    tokio::select! {
+        _ = ctrl_c => {},
+        _ = terminate => {},
+    }
+}

@@ -1,5 +1,3 @@
-use std::io;
-
 use axum::{
     routing::get,
     Router
@@ -19,15 +17,15 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .with_env_filter(log_filter)
         .with_span_events(FmtSpan::CLOSE)
         .with_line_number(true)
-        .with_writer(io::stderr)
+        .with_writer(std::io::stderr)
         .pretty()
         .init();
 
     let pool = CardPool::new().await?;
     info!("cardpool created");
 
-    let tcp_listener = tokio::net::TcpListener::bind("127.0.0.1:8080")
-        .await.unwrap();
+    let tcp_listener = tokio::net::TcpListener::bind("127.0.0.1:8000")
+        .await.expect("TcpListener should work w/ hard-coded localhost");
     let app = Router::new()
         .route("/", get(handler_root))
         .route("/main", get(get_main_opts))
@@ -36,7 +34,11 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .with_state(pool);
     info!("router created");
 
-    axum::serve(tcp_listener, app).await.unwrap();
+    info!("listening on {:?}", tcp_listener);
+    axum::serve(tcp_listener, app)
+        .with_graceful_shutdown(shutdown())
+        .await
+        .expect("Must be able to run the server (std::io::error)");
 
     Ok(())
 }
