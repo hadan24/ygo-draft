@@ -1,4 +1,3 @@
-use std::error::Error;
 use serde::Deserialize;
 use reqwest::Client;
 use tracing::{info, instrument, trace};
@@ -110,7 +109,7 @@ pub async fn get_cards_test() -> Result<Vec<ResponseCard>, Box<dyn Error>> {
 */
 
 pub async fn get_cards()
-    -> Result<(Vec<ResponseCard>, Vec<ResponseCard>), Box<dyn Error>>
+    -> Result<(Vec<ResponseCard>, Vec<ResponseCard>), reqwest::Error>
 {
     let url = "https://db.ygoprodeck.com/api/v7/cardinfo.php?";
     let client = reqwest::Client::new();
@@ -124,7 +123,7 @@ pub async fn get_cards()
 
 #[instrument]
 async fn get_main(client: &Client, url: &str)
-    -> Result<Vec<ResponseCard>, Box<dyn Error>>
+    -> Result<Vec<ResponseCard>, reqwest::Error>
 {
     info!("getting normal monsters");
     let normals = client.get(url)
@@ -168,7 +167,7 @@ async fn get_main(client: &Client, url: &str)
 
 #[instrument]
 async fn get_extra(client: &Client, url: &str)
-    -> Result<Vec<ResponseCard>, Box<dyn Error>>
+    -> Result<Vec<ResponseCard>, reqwest::Error>
 {
     info!("getting fusion monsters");
     let fusions = client.get(url)

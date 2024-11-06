@@ -1,4 +1,3 @@
-use std::error::Error;
 use serde::Serialize;
 use tracing::{debug, trace};
 use crate::queries::{ResponseCard, get_cards};
@@ -28,7 +27,18 @@ pub struct CardPool {
 pub type DraftOptions = [Card; 3];
 
 impl CardPool {
-    pub async fn new() -> Result<Self, Box<dyn Error>> {
+    /*  reqwest could fail if:
+        - something went wrong while sending the YGOPro API request
+            if e.is_request(), "check request builder and queries"
+        - a redirect loop was detected
+        - the redirect limit was exhaused
+            if e.is_timeout() || e.is_redirect, "check YGOPro API status"
+        - the response body is not JSON
+            if e.is_body(), "no JSON response, check YGOPro API docs"
+        - the JSON could not be deserialized into a <YGOProResponse>
+            if e.is_decode(), "check queries or YGOPro API docs"
+    */
+    pub async fn new_from_ygopro() -> Result<Self, reqwest::Error> {
         let (main_deck, extra_deck) = get_cards().await?;
 
         Ok(CardPool {
