@@ -3,6 +3,8 @@ use axum::{
     routing::get,
     Router
 };
+use reqwest::Method;
+use tower_http::cors::{Any, CorsLayer};
 use tracing::info;
 use tracing_subscriber::fmt::format::FmtSpan;
 use ygo_draft_server::{
@@ -30,12 +32,16 @@ async fn main() {
 
     let tcp_listener = tokio::net::TcpListener::bind("127.0.0.1:8000")
         .await.expect("TcpListener should work w/ hard-coded localhost");
+    let cors = CorsLayer::new()
+        .allow_methods(Method::GET)
+        .allow_origin(Any);
     let router = Router::new()
         .route("/", get(handler_root))
         .route("/main", get(get_main_opts))
         .route("/extra", get(get_extra_opts))
         .fallback(handler_404)
-        .with_state(card_pool);
+        .with_state(card_pool)
+        .layer(cors);
     info!("router created");
 
     info!("listening on TCPListenter: {:?}", tcp_listener);
