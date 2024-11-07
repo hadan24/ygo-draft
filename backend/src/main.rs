@@ -1,9 +1,9 @@
 use std::panic;
 use axum::{
+    http::Method,
     routing::get,
     Router
 };
-use reqwest::Method;
 use tower_http::cors::{Any, CorsLayer};
 use tracing::info;
 use tracing_subscriber::fmt::format::FmtSpan;
@@ -15,7 +15,7 @@ use ygo_draft_server::{
 #[tokio::main]
 async fn main() {
     let log_filter = std::env::var("RUST_LOG")
-        .unwrap_or_else(|_| "ygo-draft-server=info".to_owned());
+        .unwrap_or_else(|_| "info".to_owned());
     tracing_subscriber::fmt()
         .with_env_filter(log_filter)
         .with_span_events(FmtSpan::CLOSE)
