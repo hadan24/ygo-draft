@@ -32,7 +32,6 @@ Besides the appropriate docs
 - [Joshua Mo, shuttle.rs, Axum guide](https://www.shuttle.rs/blog/2023/12/06/using-axum-rust)
 - [Yew docs](https://yew.rs/docs/concepts/function-components)
 - [No Boilerplate Yew intro/overview](https://www.youtube.com/watch?v=P4LMfkFLRsI)
-- Team Gyata guides [Axum](https://www.gyata.ai/rust/axum) | [Yew](https://www.gyata.ai/rust/yew)
 - Brooks Builds tutorials [Axum](https://www.youtube.com/playlist?list=PLrmY5pVcnuE-_CP7XZ_44HN-mDrLQV4nS) | [Yew](https://www.youtube.com/playlist?list=PLrmY5pVcnuE_R5qJ0o30eGw77bWmnrUtL)
 - [Rust `image` docs for eventual/possible DB setup](https://docs.rs/image/latest/image)
 - [Overview of a typical(?) Axum/Yew server](https://robert.kra.hn/posts/2022-04-03_rust-web-wasm)
