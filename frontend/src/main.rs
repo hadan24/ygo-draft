@@ -1,3 +1,4 @@
+use gloo::console::log;
 use yew::prelude::*;
 
 #[function_component]
@@ -10,6 +11,8 @@ fn App() -> Html {
             counter.set(value);
         }
     };
+
+    log!("Hallo :D 🦀");
 
     html! {
         <>
