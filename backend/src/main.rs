@@ -30,8 +30,6 @@ async fn main() {
     };
     info!("cardpool created");
 
-    let tcp_listener = tokio::net::TcpListener::bind("127.0.0.1:8000")
-        .await.expect("TcpListener should work w/ hard-coded localhost");
     let cors = CorsLayer::new()
         .allow_methods(Method::GET)
         .allow_origin(Any);
@@ -44,6 +42,9 @@ async fn main() {
         .layer(cors);
     info!("router created");
 
+
+    let tcp_listener = tokio::net::TcpListener::bind("127.0.0.1:8000")
+        .await.expect("TcpListener should work w/ hard-coded localhost");
     info!("listening on TCPListenter: {:?}", tcp_listener);
     axum::serve(tcp_listener, router)
         .with_graceful_shutdown(shutdown())

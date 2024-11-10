@@ -12,11 +12,11 @@ fn App() -> Html {
     };
 
     html! {
-        <div>
+        <>
             <h1>{"Hallo :D 🦀"}</h1>
             <p>{ *counter }</p>
             <button {onclick}>{ "+1" }</button>
-        </div>
+        </>
     }
 }
 
