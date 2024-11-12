@@ -12,7 +12,7 @@ pub async fn handler_root() -> Response {
     (StatusCode::OK, "Hallo :D 🦀").into_response()
 }
 
-pub async fn get_main_opts(State(pool): State<CardPool>)
+pub async fn main_opts(State(pool): State<CardPool>)
     -> Json<DraftOptions>
 {
     let main_opts_span = info_span!("main_opts");
@@ -22,7 +22,7 @@ pub async fn get_main_opts(State(pool): State<CardPool>)
     Json(CardPool::generate_draft_options(&pool.main_deck))
 }
 
-pub async fn get_extra_opts(State(pool): State<CardPool>)
+pub async fn extra_opts(State(pool): State<CardPool>)
     -> Json<DraftOptions>
 {
     let extra_opts_span = info_span!("main_opts");
