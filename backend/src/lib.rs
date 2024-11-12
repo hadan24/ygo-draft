@@ -11,7 +11,10 @@ use axum::{
     routing::get,
     Router
 };
-use tower_http::cors::{Any, CorsLayer};
+use tower_http::{
+    cors::{Any, CorsLayer},
+    trace::TraceLayer
+};
 use tracing::info;
 use tracing_subscriber::fmt::format::FmtSpan;
 
@@ -45,4 +48,5 @@ pub async fn create_router() -> Router {
         .fallback(handler_404)
         .with_state(card_pool)
         .layer(cors)
+        .layer(TraceLayer::new_for_http())
 }

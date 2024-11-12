@@ -1,10 +1,11 @@
 use axum::{
+    body::Bytes,
     extract::State,
-    http::StatusCode,
+    http::{HeaderMap, StatusCode},
     response::{IntoResponse, Response},
     Json
 };
-use tracing::{info, info_span};
+use tracing::{debug, info, info_span, trace};
 use crate::card::{CardPool, DraftOptions};
 
 
@@ -12,27 +13,42 @@ pub async fn handler_root() -> Response {
     (StatusCode::OK, "Hallo :D 🦀").into_response()
 }
 
-pub async fn main_opts(State(pool): State<CardPool>)
+pub async fn main_opts(
+    State(pool): State<CardPool>,
+    headers: HeaderMap,
+    body: Bytes
+)
     -> Json<DraftOptions>
 {
-    let main_opts_span = info_span!("main_opts");
+    let main_opts_span = info_span!("get_main_opts");
     let _enter = main_opts_span.enter();
+    trace!("headers: {:?}", headers);
+    trace!("body: {:?}", body);
 
-    info!("getting main deck options");
+    info!("returning requested main deck options");
     Json(CardPool::generate_draft_options(&pool.main_deck))
 }
 
-pub async fn extra_opts(State(pool): State<CardPool>)
+pub async fn extra_opts(
+    State(pool): State<CardPool>,
+    headers: HeaderMap,
+    body: Bytes
+)
     -> Json<DraftOptions>
 {
-    let extra_opts_span = info_span!("main_opts");
+    let extra_opts_span = info_span!("get_extra_opts");
     let _enter = extra_opts_span.enter();
+    trace!("headers: {:?}", headers);
+    trace!("body: {:?}", body);
 
-    info!("getting extra deck options");
+    info!("returning requested extra deck options");
     Json(CardPool::generate_draft_options(&pool.extra_deck))
 }
 
-pub async fn handler_404() -> Response {
+pub async fn handler_404(headers: HeaderMap, body: Bytes) -> Response {
+    debug!("headers: {:?}", headers);
+    debug!("body: {:?}", body);
+
     (StatusCode::NOT_FOUND, "404 Not Found :(").into_response()
 }
 
