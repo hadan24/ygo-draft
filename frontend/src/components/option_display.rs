@@ -1,15 +1,15 @@
+use std::ops::Deref;
 use yew::prelude::*;
 use crate::Card;
 
 #[derive(PartialEq, Properties)]
 pub struct OptionDisplayProps {
-    //pub report_card_choice: Callback<>
+    pub report_choice: Callback<Card>
 }
 
 #[function_component]
-pub fn OptionDisplay(_props: &OptionDisplayProps) -> Html {
+pub fn OptionDisplay(props: &OptionDisplayProps) -> Html {
     // http call to back end, store json in state
-    // callback passed to CardChoice to get card
     let cards = use_state(|| {
         [
             Card {
@@ -30,24 +30,34 @@ pub fn OptionDisplay(_props: &OptionDisplayProps) -> Html {
         ]
     });
 
+    let report_card_choice = props.report_choice.clone();
+    let cards_clone = cards.deref().clone();
+    let onsubmit = Callback::from(move |event: SubmitEvent| {
+        event.prevent_default();
+        let chosen = event.submitter().unwrap() // Option<HtmlElement>
+            .get_attribute("value").unwrap();           // Option<String>
+
+        // assumes all unique cards, currently guaranteed by backend
+        for c in cards_clone.iter() {
+            if chosen == c.name {
+                report_card_choice.emit(c.clone());
+                return;
+            }
+        }
+    });
     
     html!{
-        <form>
-            <CardOption
-                name={cards[0].name.clone()}
-                img_link={cards[0].img_link.clone()}
-            />
-            <CardOption
-                name={cards[1].name.clone()}
-                img_link={cards[1].img_link.clone()}
-            />
-            <CardOption
-                name={cards[2].name.clone()}
-                img_link={cards[2].img_link.clone()}
-            />
-        </form>
+        <form onsubmit={onsubmit}>{
+            cards.iter().map(|c| {
+                html!{<CardOption
+                    name={c.name.clone()}
+                    img_link={c.img_link.clone()}
+                />}
+            }).collect::<Html>()
+        }</form>
     }
 }
+
 
 #[derive(PartialEq, Properties)]
 struct CardOptionProps {
@@ -62,7 +72,7 @@ fn CardOption(props: &CardOptionProps) -> Html {
             <h3>{&props.name}</h3>
             <img src={props.img_link.clone()} width="400px" />
             <br />
-            <button>{"Select"}</button>
+            <button value={props.name.clone()}>{"Select"}</button>
         </div>
     }
 }
