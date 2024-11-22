@@ -1,6 +1,10 @@
 use std::ops::Deref;
+use gloo::{
+    console::log,
+    net::http::Request
+};
 use yew::prelude::*;
-use crate::Card;
+use crate::{Card, DraftOptions};
 
 #[derive(PartialEq, Properties)]
 pub struct OptionDisplayProps {
@@ -9,7 +13,7 @@ pub struct OptionDisplayProps {
 
 #[function_component]
 pub fn OptionDisplay(props: &OptionDisplayProps) -> Html {
-    // http call to back end, store json in state
+    // http call to back end, store json in state    
     let cards = use_state(|| {
         [
             Card {
@@ -30,6 +34,23 @@ pub fn OptionDisplay(props: &OptionDisplayProps) -> Html {
         ]
     });
 
+    let onclick = {
+        let cards = cards.clone();
+        Callback::from(move |_| {
+            let cards = cards.clone();
+            wasm_bindgen_futures::spawn_local( async move {
+                let api_cards = Request::get("http://127.0.0.1:8000/main")
+                    .send().await
+                    .expect("Check url and backend")
+                    .json::<DraftOptions>().await
+                    .unwrap();
+        
+                log!(serde_json::to_string_pretty(&api_cards).unwrap());
+                cards.set(api_cards);
+            })
+        })
+    };
+
     let report_card_choice = props.report_choice.clone();
     let cards_clone = cards.deref().clone();
     let onsubmit = Callback::from(move |event: SubmitEvent| {
@@ -47,14 +68,17 @@ pub fn OptionDisplay(props: &OptionDisplayProps) -> Html {
     });
     
     html!{
+        <>
+        <button onclick={onclick}>{"weeeeeeeeee"}</button>
         <form onsubmit={onsubmit}>{
-            cards.iter().map(|c| {
-                html!{<CardOption
+            cards.iter().map(|c| html!{
+                <CardOption
                     name={c.name.clone()}
                     img_link={c.img_link.clone()}
-                />}
+                />
             }).collect::<Html>()
         }</form>
+        </>
     }
 }
 
