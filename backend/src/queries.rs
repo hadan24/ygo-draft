@@ -125,19 +125,19 @@ pub async fn get_cards()
 async fn get_main(client: &Client, url: &str)
     -> Result<Vec<ResponseCard>, reqwest::Error>
 {
-    info!("getting normal monsters");
+    trace!("getting normal monsters");
     let normals = client.get(url)
         .query(&[("level", "lte4"), ("type", "Normal Monster"), ("atk", "gte1900")])
         .send().await?;
-    info!("getting effect monsters");
+    trace!("getting effect monsters");
     let effects = client.get(url)
         .query(&[("level", "lte4"), ("type", "Effect Monster")])
         .send().await?;
-    info!("getting spells");
+    trace!("getting spells");
     let spells = client.get(url)
         .query(&[("type", "Spell Card")])
         .send().await?;
-    info!("getting traps");
+    trace!("getting traps");
     let traps = client.get(url)
         .query(&[("type", "Trap Card")])
         .send().await?;
@@ -175,19 +175,19 @@ async fn get_main(client: &Client, url: &str)
 async fn get_extra(client: &Client, url: &str)
     -> Result<Vec<ResponseCard>, reqwest::Error>
 {
-    info!("getting fusion monsters");
+    trace!("getting fusion monsters");
     let fusions = client.get(url)
         .query(&[("type", "Fusion Monster")])
         .send().await?;
-    info!("getting synchro monsters");
+    trace!("getting synchro monsters");
     let synchros = client.get(url)
         .query(&[("type", "Synchro Monster")])
         .send().await?;
-    info!("getting xyz monsters");
+    trace!("getting xyz monsters");
     let xyzs = client.get(url)
         .query(&[("type", "Xyz Monster")])
         .send().await?;
-    info!("getting link monsters");
+    trace!("getting link monsters");
     let links = client.get(url)
         .query(&[("type", "Link Monster")])
         .send().await?;
