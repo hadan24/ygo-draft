@@ -8,13 +8,13 @@ use gloo::console::log;
 use serde::{Deserialize, Serialize};
 use yew::prelude::*;
 
-#[derive(Clone, Deserialize, Serialize)]
+#[derive(Clone, Default, Deserialize, PartialEq, Serialize)]
 pub struct Card {
     pub id: u32,
     pub name: String,
     pub img_link: String
 }
-pub type DraftOptionsArr = [Card; 3];
+pub type DraftOptionsArray = [Card; 3];
 
 #[function_component]
 pub fn App() -> Html {
@@ -27,7 +27,7 @@ pub fn App() -> Html {
         <>
             <h1>{"Hallo :D 🦀"}</h1>
 
-            <OptionDisplay report_choice={report_choice} />
+            <DraftOptionDisplay report_choice={report_choice} />
         </>
     }
 }
