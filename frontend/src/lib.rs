@@ -8,6 +8,7 @@ use gloo::console::log;
 use serde::{Deserialize, Serialize};
 use yew::prelude::*;
 
+
 #[derive(Clone, Default, Deserialize, PartialEq, Serialize)]
 pub struct Card {
     pub id: u32,

@@ -17,15 +17,20 @@ pub fn DraftOptionDisplay(props: &OptionDisplayProps) -> Html {
     let temp = state.clone();   // keeps original state usable for html
     let on_submit = Callback::from(move |event: SubmitEvent| {
         event.prevent_default();
+
         // if outside, requires temp to exist as long as the callback does
-        // callback lasts for `static presumably b/c it's used in the html
+        // callback lasts for 'static presumably b/c it's used in the html
         let curr_cards = temp.as_ref();
         if let Some(cards) = curr_cards {
-            let chosen = event.submitter().unwrap() // Option<HtmlElement>
-                .get_attribute("value").unwrap();   // Option<String>
+            // leaving unwrap()s here since how the app is built and the
+            // `if let` check ensures the event has a named submitter
+            let chosen = event.submitter()
+                .expect("Form should have submitter button")
+                .get_attribute("value")
+                .expect("Button should have value (card name)");
     
-            // assumes all unique cards, currently guaranteed by backend
-            for c in cards.iter() {
+            // assumes all unique cards, guaranteed by backend
+            for c in cards {
                 if chosen == c.name {
                     report_card_choice.emit(c.clone());
                     break;
@@ -37,11 +42,9 @@ pub fn DraftOptionDisplay(props: &OptionDisplayProps) -> Html {
         spawn_local( async move {
             let api_cards = Request::get("http://127.0.0.1:8000/main")
                 .send().await
-                    // Result<gloo::net::http::response::Response, gloo::net::error::Error>
-                .expect("Backend should be running, also ensure the URL is correct")
+                .expect("Backend should be running & ensure the URL is correct")
                 .json::<DraftOptionsArray>().await
-                    // Result<DraftOptions, gloo::net::error::Error>
-                .unwrap();
+                .expect("Backend should return valid JSON");
             new_state.set(Some(api_cards));
         });
     });
@@ -51,15 +54,17 @@ pub fn DraftOptionDisplay(props: &OptionDisplayProps) -> Html {
         <form onsubmit={on_submit}>{
         match state.deref() {
             None => html!{ <button>{"Start"}</button> },
-
-            Some(cards) =>
-                cards.iter().map(|c| html!{
-                    <CardOption
-                        name={c.name.clone()}
-                        img_link={c.img_link.clone()}
-                    />
-                }).collect::<Html>()
+            Some(cards) => draft_options_to_html(cards)
         }
         }</form>
     }
+}
+
+fn draft_options_to_html(cards: &DraftOptionsArray) -> Html {
+    cards.iter().map(|c| html!{
+        <CardOption
+            name={c.name.clone()}
+            img_link={c.img_link.clone()}
+        />
+    }).collect::<Html>()
 }
