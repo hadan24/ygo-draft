@@ -14,13 +14,13 @@ pub struct Card {
     pub name: String,
     pub img_link: String
 }
-pub type DraftOptions = [Card; 3];
+pub type DraftOptionsArr = [Card; 3];
 
 #[function_component]
 pub fn App() -> Html {
     log!("Hallo :D 🦀");
     let report_choice = Callback::from(|c: Card| {
-        log!(c.id, c.name, c.img_link);
+        log!(serde_json::to_string_pretty(&c).unwrap());
     });
 
     html! {

@@ -3,8 +3,9 @@ use gloo::{
     console::log,
     net::http::Request
 };
+use wasm_bindgen_futures::spawn_local;
 use yew::prelude::*;
-use crate::{Card, DraftOptions};
+use crate::{Card, DraftOptionsArr, CardOption};
 
 #[derive(PartialEq, Properties)]
 pub struct OptionDisplayProps {
@@ -13,7 +14,6 @@ pub struct OptionDisplayProps {
 
 #[function_component]
 pub fn OptionDisplay(props: &OptionDisplayProps) -> Html {
-    // http call to back end, store json in state    
     let cards = use_state(|| {
         [
             Card {
@@ -34,42 +34,41 @@ pub fn OptionDisplay(props: &OptionDisplayProps) -> Html {
         ]
     });
 
-    let onclick = {
-        let cards = cards.clone();
-        Callback::from(move |_| {
-            let cards = cards.clone();
-            wasm_bindgen_futures::spawn_local( async move {
+    let report_card_choice = props.report_choice.clone();
+    let curr_cards = cards.deref().clone();
+    let onsubmit = {
+        let new_cards_state = cards.clone();
+        Callback::from(move |event: SubmitEvent| {
+            event.prevent_default();
+
+            let chosen = event.submitter().unwrap() // Option<HtmlElement>
+                .get_attribute("value").unwrap();   // Option<String>
+
+            // assumes all unique cards, currently guaranteed by backend
+            for c in curr_cards.iter() {
+                if chosen == c.name {
+                    report_card_choice.emit(c.clone());
+                    break;
+                }
+            }
+
+            let new_cards_state = new_cards_state.clone();
+            spawn_local( async move {
                 let api_cards = Request::get("http://127.0.0.1:8000/main")
-                    .send().await
-                    .expect("Check url and backend")
-                    .json::<DraftOptions>().await
-                    .unwrap();
-        
+                .send().await
+                    // Result<gloo::net::http::response::Response, gloo::net::error::Error>
+                .expect("Backend should be running, also ensure the URL is correct")
+                .json::<DraftOptionsArr>().await
+                    // Result<DraftOptions, gloo::net::error::Error>
+                .unwrap();
+
                 log!(serde_json::to_string_pretty(&api_cards).unwrap());
-                cards.set(api_cards);
-            })
+                new_cards_state.set(api_cards);
+            });
         })
     };
-
-    let report_card_choice = props.report_choice.clone();
-    let cards_clone = cards.deref().clone();
-    let onsubmit = Callback::from(move |event: SubmitEvent| {
-        event.prevent_default();
-        let chosen = event.submitter().unwrap() // Option<HtmlElement>
-            .get_attribute("value").unwrap();           // Option<String>
-
-        // assumes all unique cards, currently guaranteed by backend
-        for c in cards_clone.iter() {
-            if chosen == c.name {
-                report_card_choice.emit(c.clone());
-                return;
-            }
-        }
-    });
     
     html!{
-        <>
-        <button onclick={onclick}>{"weeeeeeeeee"}</button>
         <form onsubmit={onsubmit}>{
             cards.iter().map(|c| html!{
                 <CardOption
@@ -78,25 +77,5 @@ pub fn OptionDisplay(props: &OptionDisplayProps) -> Html {
                 />
             }).collect::<Html>()
         }</form>
-        </>
-    }
-}
-
-
-#[derive(PartialEq, Properties)]
-struct CardOptionProps {
-    name: String,
-    img_link: String,
-}
-
-#[function_component]
-fn CardOption(props: &CardOptionProps) -> Html {
-    html!{
-        <div class="card">
-            <h3>{&props.name}</h3>
-            <img src={props.img_link.clone()} width="400px" />
-            <br />
-            <button value={props.name.clone()}>{"Select"}</button>
-        </div>
     }
 }
