@@ -1,5 +1,6 @@
 use std::ops::Deref;
 use gloo::net::http::Request;
+use stylist::Style;
 use wasm_bindgen_futures::spawn_local;
 use yew::prelude::*;
 use crate::{Card, DraftOptionsArray, CardOption};
@@ -11,6 +12,7 @@ pub struct OptionDisplayProps {
 
 #[function_component]
 pub fn DraftOptionDisplay(props: &OptionDisplayProps) -> Html {
+    let styles = Style::new(STYLE).expect("Ensure CSS is valid");
     let state: UseStateHandle<Option<DraftOptionsArray>> = use_state(|| None);
 
     let report_card_choice = props.report_choice.clone();
@@ -51,9 +53,9 @@ pub fn DraftOptionDisplay(props: &OptionDisplayProps) -> Html {
     
     
     html!{
-        <form onsubmit={on_submit}>{
+        <form onsubmit={on_submit} class={styles}>{
         match state.deref() {
-            None => html!{ <button>{"Start"}</button> },
+            None => html!{ <button class={"start"}>{"Start"}</button> },
             Some(cards) => draft_options_to_html(cards)
         }
         }</form>
@@ -68,3 +70,17 @@ fn draft_options_to_html(cards: &DraftOptionsArray) -> Html {
         />
     }).collect::<Html>()
 }
+
+const STYLE: &str = 
+r#"
+margin: 5px;
+border: 1px solid black;
+padding: 5px;
+display: flex;
+width: 70%;
+
+.card {
+    width: 33%;
+    text-align: center;
+}
+"#;
