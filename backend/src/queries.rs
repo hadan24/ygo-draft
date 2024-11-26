@@ -145,22 +145,22 @@ async fn get_main(client: &Client, url: &str)
     let normals = normals.json::<YGOProResponse>()
         .await?
         .data;
-    info!("gotten normal monsters");
+    trace!("gotten normal monsters");
     trace!("number of normal monsters: {}", normals.len());
     let effects = effects.json::<YGOProResponse>()
         .await?
         .data;
-    info!("gotten effect monsters");
+    trace!("gotten effect monsters");
     trace!("number of effect monsters: {}", effects.len());
     let spells = spells.json::<YGOProResponse>()
         .await?
         .data;
-    info!("gotten spells");
+    trace!("gotten spells");
     trace!("number of spells: {}", spells.len());
     let traps = traps.json::<YGOProResponse>()
         .await?
         .data;
-    info!("gotten traps");
+    trace!("gotten traps");
     trace!("number of traps: {}", traps.len());
 
     let mut main = normals;
@@ -195,22 +195,22 @@ async fn get_extra(client: &Client, url: &str)
     let fusions = fusions.json::<YGOProResponse>()
         .await?
         .data;
-    info!("gotten fusion monsters");
+    trace!("gotten fusion monsters");
     trace!("number of fusion monsters: {}", fusions.len());
     let synchros = synchros.json::<YGOProResponse>()
         .await?
         .data;
-    info!("gotten synchro monsters");
+    trace!("gotten synchro monsters");
     trace!("number of synchro monsters: {}", synchros.len());
     let xyzs = xyzs.json::<YGOProResponse>()
         .await?
         .data;
-    info!("gotten xyz monsters");
+    trace!("gotten xyz monsters");
     trace!("number of xyz monsters: {}", xyzs.len());
     let links = links.json::<YGOProResponse>()
         .await?
         .data;
-    info!("gotten link monsters");
+    trace!("gotten link monsters");
     trace!("number of link monsters: {}", links.len());
 
     let mut extra = fusions;

@@ -1,3 +1,4 @@
+use stylist::Style;
 use yew::prelude::*;
 
 #[derive(PartialEq, Properties)]
@@ -8,12 +9,24 @@ pub struct CardOptionProps {
 
 #[function_component]
 pub fn CardOption(props: &CardOptionProps) -> Html {
+    let styles = Style::new(STYLE).expect("Ensure CSS is valid");
+
     html!{
-        <div class="card">
+        <div class={styles}>
             <h3>{&props.name}</h3>
-            <img src={props.img_link.clone()} width="200px" />
+            <img src={props.img_link.clone()} />
             <br />
             <button value={props.name.clone()}>{"Select"}</button>
         </div>
     }
 }
+
+const STYLE: &str =
+r#"
+width: 33%;
+text-align: center;
+
+img {
+    width: 200px;
+}
+"#;

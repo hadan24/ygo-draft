@@ -78,9 +78,4 @@ border: 1px solid black;
 padding: 5px;
 display: flex;
 width: 70%;
-
-.card {
-    width: 33%;
-    text-align: center;
-}
 "#;
