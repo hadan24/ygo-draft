@@ -78,4 +78,5 @@ border: 1px solid black;
 padding: 5px;
 display: flex;
 width: 70%;
+height: auto;
 "#;

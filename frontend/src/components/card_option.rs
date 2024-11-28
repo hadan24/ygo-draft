@@ -28,5 +28,6 @@ text-align: center;
 
 img {
     width: 200px;
+    margin-top: auto;
 }
 "#;
