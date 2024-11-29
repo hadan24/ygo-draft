@@ -6,12 +6,12 @@ use yew::prelude::*;
 use crate::{Card, DraftOptionsArray, CardOption};
 
 #[derive(PartialEq, Properties)]
-pub struct OptionDisplayProps {
+pub struct DraftOptionDisplayProps {
     pub report_choice: Callback<Card>
 }
 
 #[function_component]
-pub fn DraftOptionDisplay(props: &OptionDisplayProps) -> Html {
+pub fn DraftOptionDisplay(props: &DraftOptionDisplayProps) -> Html {
     let styles = Style::new(STYLE).expect("Ensure CSS is valid");
     let state: UseStateHandle<Option<DraftOptionsArray>> = use_state(|| None);
 
