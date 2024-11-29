@@ -13,11 +13,15 @@ pub fn DeckList(props: &DeckListProps) -> Html {
 
     html! {
         <ul class={style}>{
-            props.list.iter().map(|c| html!{
-                <li>{c.name.clone()}</li>
-            }).collect::<Html>()
+            decklist_to_html(&props.list)
         }</ul>
     }
+}
+
+fn decklist_to_html(deck: &[Card]) -> Html {
+    deck.iter().map(|c| html!{
+        <li>{c.name.clone()}</li>
+    }).collect::<Html>()
 }
 
 const STYLE: &str =
