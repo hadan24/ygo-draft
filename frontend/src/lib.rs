@@ -4,7 +4,6 @@ mod pages;
 use components::*;
 use pages::*;
 
-use gloo::console::log;
 use serde::{Deserialize, Serialize};
 use yew::prelude::*;
 
@@ -19,8 +18,6 @@ pub type DraftOptionsArray = [Card; 3];
 
 #[function_component]
 pub fn App() -> Html {
-    log!("Hallo :D 🦀");
-
     html! {
         <Draft />
     }
