@@ -1,20 +1,23 @@
 use stylist::Style;
 use yew::prelude::*;
-use crate::Card;
+use crate::{Card, DeckListsState};
 
 #[derive(PartialEq, Properties)]
 pub struct DeckListProps {
-    pub list: Vec<Card>
+    pub list: DeckListsState
 }
 
 #[function_component]
 pub fn DeckList(props: &DeckListProps) -> Html {
     let style = Style::new(STYLE).expect("Ensure CSS is valid");
+    //let main_deck_style = Style::new(STYLE).expect("Ensure CSS is valid");
+    //let extra_deck_style = Style::new(STYLE).expect("Ensure CSS is valid");
 
     html! {
-        <ul class={style}>{
-            decklist_to_html(&props.list)
-        }</ul>
+        <div class={style}>
+            <ul class={"main"}>{ decklist_to_html(&props.list.main) }</ul>
+            <ul class={"extra"}>{ decklist_to_html(&props.list.extra) }</ul>
+        </div>
     }
 }
 
@@ -28,10 +31,14 @@ const STYLE: &str =
 r#"
 margin: 5px;
 border: 1px solid black;
-padding: 5px;
+padding: 10px;
 width: 30%;
 
-li {
-    margin-left: 20px;
+.main {
+    border: 1px solid orange;
+}
+
+.extra {
+    border: 1px solid purple;
 }
 "#;

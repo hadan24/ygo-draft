@@ -5,9 +5,13 @@ use wasm_bindgen_futures::spawn_local;
 use yew::prelude::*;
 use crate::{Card, DraftOptionsArray, CardOption};
 
+#[derive(Clone, PartialEq)]
+pub enum DraftOptionSource { Main, Extra }
+
 #[derive(PartialEq, Properties)]
 pub struct DraftOptionDisplayProps {
-    pub report_choice: Callback<Card>
+    pub report_choice: Callback<Card>,
+    pub next_source: DraftOptionSource
 }
 
 #[function_component]
@@ -16,6 +20,7 @@ pub fn DraftOptionDisplay(props: &DraftOptionDisplayProps) -> Html {
     let state: UseStateHandle<Option<DraftOptionsArray>> = use_state(|| None);
 
     let report_card_choice = props.report_choice.clone();
+    let source = props.next_source.clone();
     let temp = state.clone();   // keeps original state usable for html
     let on_submit = Callback::from(move |event: SubmitEvent| {
         event.prevent_default();
@@ -41,12 +46,19 @@ pub fn DraftOptionDisplay(props: &DraftOptionDisplayProps) -> Html {
         }
 
         let new_state = temp.clone();
+        let source = source.clone();
         spawn_local( async move {
-            let api_cards = Request::get("http://127.0.0.1:8000/main")
+            let url = match source {
+                DraftOptionSource::Main => "http://127.0.0.1:8000/main",
+                DraftOptionSource::Extra => "http://127.0.0.1:8000/extra"
+            };
+            
+            let api_cards = Request::get(url)
                 .send().await
                 .expect("Backend should be running & ensure the URL is correct")
                 .json::<DraftOptionsArray>().await
                 .expect("Backend should return valid JSON");
+
             new_state.set(Some(api_cards));
         });
     });
@@ -55,7 +67,7 @@ pub fn DraftOptionDisplay(props: &DraftOptionDisplayProps) -> Html {
     html!{
         <form onsubmit={on_submit} class={styles}>{
         match state.deref() {
-            None => html!{ <button class={"start"}>{"Start"}</button> },
+            None => html!{ <button>{"Start"}</button> },
             Some(cards) => draft_options_to_html(cards)
         }
         }</form>
