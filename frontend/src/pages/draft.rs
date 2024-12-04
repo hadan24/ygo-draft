@@ -2,32 +2,26 @@ use std::ops::Deref;
 use stylist::Style;
 use yew::prelude::*;
 use crate::{
-    components::{DeckList, DraftOptionDisplay, DraftOptionSource},
-    Card
+    components::{DeckList, DraftOptionDisplay},
+    Card,
+    DeckListsState,
+    DraftOptionSource
 };
 
-#[derive(Clone, Default, PartialEq)]
-pub struct DeckListsState {
-    pub main: Vec<Card>,
-    pub extra: Vec<Card>
-}
-
-#[derive(PartialEq, Properties)]
-pub struct DraftProps {}
 
 #[function_component]
-pub fn Draft(_props: &DraftProps) -> Html {
+pub fn Draft() -> Html {
     let styles = Style::new(STYLE).expect("Ensure CSS is valid");
-    let deck = use_state(|| {DeckListsState::default()});
+    let decklist = use_state(|| {DeckListsState::default()});
 
-    let temp = deck.clone();
+    let temp = decklist.clone();
     let report_choice = Callback::from(move |c: Card| {
         use DraftOptionSource::*;
-        let curr_source = SOURCE_ORDER[temp.main.len() + temp.extra.len()].clone();
+        let curr_source = &SOURCE_ORDER[temp.main.len() + temp.extra.len()];
 
         let mut new_deck = match curr_source {
             Main => temp.main.clone(),
-            Extra => temp.extra.clone(),
+            Extra => temp.extra.clone()
         };
         new_deck.push(c);
 
@@ -49,9 +43,9 @@ pub fn Draft(_props: &DraftProps) -> Html {
         <div class={styles}>
             <DraftOptionDisplay 
                 report_choice={report_choice}
-                next_source={SOURCE_ORDER[deck.main.len() + deck.extra.len() + 1].clone()}
+                next_source={SOURCE_ORDER[decklist.main.len() + decklist.extra.len() + 1].clone()}
             />
-            <DeckList list={deck.deref().clone()} />
+            <DeckList list={decklist.deref().clone()} />
         </div>
         </>
     }

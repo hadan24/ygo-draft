@@ -3,10 +3,12 @@ use gloo::net::http::Request;
 use stylist::Style;
 use wasm_bindgen_futures::spawn_local;
 use yew::prelude::*;
-use crate::{Card, DraftOptionsArray, CardOption};
-
-#[derive(Clone, PartialEq)]
-pub enum DraftOptionSource { Main, Extra }
+use crate::{
+    Card,
+    DraftOptionsArray,
+    DraftOptionSource,
+    components::CardOption
+};
 
 #[derive(PartialEq, Properties)]
 pub struct DraftOptionDisplayProps {
@@ -25,8 +27,9 @@ pub fn DraftOptionDisplay(props: &DraftOptionDisplayProps) -> Html {
     let on_submit = Callback::from(move |event: SubmitEvent| {
         event.prevent_default();
 
-        // if outside, requires temp to exist as long as the callback does
-        // callback lasts for 'static presumably b/c it's used in the html
+        // if `temp.as_ref()` is outside the callback, temp is required
+        // to exist as long as the callback does, which is ('static)
+        // presumably b/c it's used in the html
         let curr_cards = temp.as_ref();
         if let Some(cards) = curr_cards {
             // leaving unwrap()s here since how the app is built and the
