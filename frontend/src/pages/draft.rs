@@ -2,7 +2,7 @@ use std::ops::Deref;
 use stylist::Style;
 use yew::prelude::*;
 use crate::{
-    components::{DeckList, DraftOptionDisplay},
+    components::{DeckList, OptionDisplay},
     Card,
     DeckListsState,
     DraftOptionSource
@@ -41,7 +41,7 @@ pub fn Draft() -> Html {
         <>
         <h1>{"Hallo :D 🦀"}</h1>
         <div class={styles}>
-            <DraftOptionDisplay 
+            <OptionDisplay 
                 report_choice={report_choice}
                 next_source={SOURCE_ORDER[decklist.main.len() + decklist.extra.len() + 1].clone()}
             />

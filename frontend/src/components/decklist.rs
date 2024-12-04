@@ -10,8 +10,6 @@ pub struct DeckListProps {
 #[function_component]
 pub fn DeckList(props: &DeckListProps) -> Html {
     let style = Style::new(STYLE).expect("Ensure CSS is valid");
-    //let main_deck_style = Style::new(STYLE).expect("Ensure CSS is valid");
-    //let extra_deck_style = Style::new(STYLE).expect("Ensure CSS is valid");
 
     html! {
         <div class={style}>
