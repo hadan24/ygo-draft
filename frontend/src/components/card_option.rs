@@ -12,7 +12,7 @@ pub fn CardOption(props: &CardOptionProps) -> Html {
     let styles = Style::new(STYLE).expect("Ensure CSS is valid");
 
     html!{
-        <div class={styles}>
+        <div key={&*props.name} class={styles}>
             <h3>{&props.name}</h3>
             <img src={&props.img_link} />
             <br />

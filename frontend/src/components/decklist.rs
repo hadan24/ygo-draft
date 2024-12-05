@@ -21,7 +21,7 @@ pub fn DeckList(props: &DeckListProps) -> Html {
 
 fn decklist_to_html(deck: &[Card]) -> Html {
     deck.iter().map(|c| html!{
-        <li>{c.name.clone()}</li>
+        <li key={c.name.clone()}> {c.name.clone()} </li>
     }).collect::<Html>()
 }
 
