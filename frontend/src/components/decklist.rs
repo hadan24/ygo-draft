@@ -29,14 +29,16 @@ const STYLE: &str =
 r#"
 margin: 5px;
 border: 1px solid black;
-padding: 10px;
-width: 30%;
+padding: 0px 15px;
+grid-area: decklist;
 
 .main {
     border: 1px solid orange;
+    padding: 10px 0px 10px 40px;
 }
 
 .extra {
     border: 1px solid purple;
+    padding: 10px 0px 10px 40px;
 }
 "#;

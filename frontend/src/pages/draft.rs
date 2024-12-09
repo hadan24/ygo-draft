@@ -53,7 +53,11 @@ pub fn Draft() -> Html {
 
 const STYLE: &str =
 r#"
-display: flex;
+display: grid;
+grid-template-columns: 70% 30%;
+grid-template-areas: 
+    "options decklist"
+    "stats decklist";
 "#;
 
 const SOURCE_ORDER: [DraftOptionSource; 55] = {
