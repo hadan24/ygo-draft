@@ -1,5 +1,6 @@
 use stylist::Style;
 use yew::prelude::*;
+use crate::components::Rules;
 
 #[derive(PartialEq, Properties)]
 pub struct IndexProps {}
@@ -10,7 +11,9 @@ pub fn Index(_props: &IndexProps) -> Html {
 
     html! {
         <div class={styles}>
-        
+            <h1>{"Yu-Gi-Oh! Modern Draft"}</h1>
+            <h2>{"General Rules"}</h2>
+            <Rules />
         </div>
     }
 }

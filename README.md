@@ -13,7 +13,7 @@ Number  | Goal      | Timeline      | Notes
 3 | Finalize API v1 | 10/21 - 10/25 | - change of plans to SPA w/ simple API, schedule adjusted <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/12)
 4 | Tracing/Errors  | 10/28 - 11/8  | - election stress and other sadness :'), schedule adjusted <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/13)
 5 | Drafting        | 11/11 - 11/29 | - CSS & needed refactoring delayed to be part of next goal <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/3)
-6 | Finish Routes   | 12/2 - 12/20  | <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/11)
+6 | Finish Routes   | 12/2 - 12/27  | - lost interest for a bit and had other responsibilities, schedule adjusted <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/11)
 
 #### Stretch Goals
 Number  | Goal      | Timeline      | Notes
