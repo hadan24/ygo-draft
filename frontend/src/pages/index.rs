@@ -1,12 +1,14 @@
 use stylist::Style;
 use yew::prelude::*;
-use crate::components::{Intro, Rules};
+use crate::components::{Intro, NavBar, Rules};
 
 #[function_component]
 pub fn Index() -> Html {
     let styles = Style::new(STYLE).expect("Ensure CSS is valid");
 
     html! {
+        <>
+        <NavBar />
         <div class={styles}>
             <h1>{"Yu-Gi-Oh! Modern Draft"}</h1>
             <Intro />
@@ -21,6 +23,7 @@ pub fn Index() -> Html {
             </i></p>
             <Rules />
         </div>
+        </>
     }
 }
 

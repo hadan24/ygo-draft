@@ -9,7 +9,7 @@ use yew_router::prelude::*;
 
 
 #[derive(Clone, Routable, PartialEq)]
-enum Routes {
+pub enum Routes {
     #[at("/")]
     Index,
     #[at("/draft")]

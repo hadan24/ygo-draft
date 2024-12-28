@@ -2,7 +2,7 @@ use std::ops::Deref;
 use stylist::Style;
 use yew::prelude::*;
 use crate::{
-    components::{DeckList, OptionDisplay},
+    components::{DeckList, NavBar, OptionDisplay},
     Card,
     DeckListsState,
     DraftOptionSource
@@ -39,7 +39,8 @@ pub fn Draft() -> Html {
 
     html! {
         <>
-        <h1>{"Hallo :D 🦀"}</h1>
+        <NavBar />
+        <h1>{"The Draft"}</h1>
         <div class={styles}>
             <OptionDisplay 
                 report_choice={report_choice}
