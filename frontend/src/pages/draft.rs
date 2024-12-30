@@ -2,7 +2,7 @@ use std::ops::Deref;
 use stylist::Style;
 use yew::prelude::*;
 use crate::{
-    components::{DeckList, NavBar, OptionDisplay},
+    components::{DeckDownload, DeckList, NavBar, OptionDisplay},
     Card,
     DeckListsState,
     DraftOptionSource
@@ -34,18 +34,24 @@ pub fn Draft() -> Html {
                 main: temp.main.clone(),
                 extra: new_deck
             })
-        }
+        };
     });
 
+    let next_src_num = decklist.main.len() + decklist.extra.len() + 1;
     html! {
         <>
         <NavBar />
         <h1>{"The Draft"}</h1>
         <div class={styles}>
-            <OptionDisplay 
-                report_choice={report_choice}
-                next_source={SOURCE_ORDER[decklist.main.len() + decklist.extra.len() + 1].clone()}
-            />
+            if next_src_num >= SOURCE_ORDER_LEN {
+                <DeckDownload list={decklist.deref().clone()} />
+            } else {
+                <OptionDisplay 
+                    report_choice={report_choice}
+                    next_source={SOURCE_ORDER[next_src_num].clone()}
+                />
+            }
+            
             <DeckList list={decklist.deref().clone()} />
         </div>
         </>
@@ -61,7 +67,8 @@ grid-template-areas:
     "stats decklist";
 "#;
 
-const SOURCE_ORDER: [DraftOptionSource; 55] = {
+const SOURCE_ORDER_LEN: usize = 56;
+const SOURCE_ORDER: [DraftOptionSource; SOURCE_ORDER_LEN] = {
     use DraftOptionSource::*;
     [   // 1  2     3     4     5     6     7     8     9      10     11
         Main, Main, Main, Main, Main, Main, Main, Main, Extra, Extra, Extra,
@@ -69,5 +76,6 @@ const SOURCE_ORDER: [DraftOptionSource; 55] = {
         Main, Main, Main, Main, Main, Main, Main, Main, Extra, Extra, Extra,
         Main, Main, Main, Main, Main, Main, Main, Main, Extra, Extra, Extra,
         Main, Main, Main, Main, Main, Main, Main, Main, Extra, Extra, Extra,
+        Main    // extra dummy value get render on final choice
     ]
 };

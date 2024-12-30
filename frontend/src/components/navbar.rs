@@ -25,9 +25,3 @@ const STYLE: &str =
 r#"
 
 "#;
-/*
-https://www.w3schools.com/TAgs/tag_nav.asp
-https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav
-https://www.w3schools.com/Css/css_navbar.asp
-https://yew.rs/docs/concepts/router
-*/
