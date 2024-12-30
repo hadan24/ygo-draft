@@ -26,6 +26,9 @@ r#"
 width: 33%;
 text-align: center;
 
+h3 {
+    height: 2em;
+}
 img {
     width: 200px;
     margin-top: auto;

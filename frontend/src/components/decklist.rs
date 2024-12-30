@@ -13,8 +13,14 @@ pub fn DeckList(props: &DeckListProps) -> Html {
 
     html! {
         <div class={style}>
-            <ul class={"main"}>{ decklist_to_html(&props.list.main) }</ul>
-            <ul class={"extra"}>{ decklist_to_html(&props.list.extra) }</ul>
+            <ul class={"main"}>
+                <h4>{"Main Deck: "}{&props.list.main.len()}</h4>
+                { decklist_to_html(&props.list.main) }
+            </ul>
+            <ul class={"extra"}>
+                <h4>{"Extra Deck: "}{&props.list.extra.len()}</h4>
+                { decklist_to_html(&props.list.extra) }
+            </ul>
         </div>
     }
 }

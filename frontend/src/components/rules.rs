@@ -7,7 +7,9 @@ pub fn Rules() -> Html {
 
     html! {
         <ul class={styles}>
-            <li>{"3 options are shown at a time (Hearthstone-style)."}</li>
+            <li>{"3 options are given at a time (Hearthstone-style) as shown below."}</li>
+            <img src="static/draft-example.png" alt="Example image of the draft UI" />
+            
             <li>{"All Main Deck Monsters are level 4 or lower."}</li>
             <li>{"All monsters are treated as every type."}</li>
             <li>
