@@ -15,28 +15,20 @@ Number  | Goal      | Timeline      | Notes
 5 | Drafting        | 11/11 - 11/29 | - CSS & needed refactoring delayed to be part of next goal <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/3)
 6 | Finish Routes   | 12/2 - 12/27  | - lost interest for a bit and had other responsibilities, schedule adjusted <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/11)
 
+(12/30/24) Styling and stretch goals will be left for another time. I'm looking to start on more game-related projects.
+
 #### Stretch Goals
 Number  | Goal      | Timeline      | Notes
 --|-----------------|---------------|--------
-1 | Deck stats      | TBD           | <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/5)
-2 | Balance draft   | TBD           | <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/6)
-3 | Deck exporting  | TBD           | - export to YDK will be included as part of Goal 6 <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/7)
-4 | DB integration  | TBD           | <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/8)
-5 | Deploy          | TBD           | <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/10)
-
-### Resources for Myself
-Besides the appropriate docs
-- [YGOPRODeck API guide](https://ygoprodeck.com/api-guide)
-- [Rust Cookbook, web APIs](https://rust-lang-nursery.github.io/rust-cookbook/web/clients/apis.html)
-- [Axum docs](https://docs.rs/axum/latest/axum)
-- [Joshua Mo, shuttle.rs, Axum guide](https://www.shuttle.rs/blog/2023/12/06/using-axum-rust)
-- [Yew docs](https://yew.rs/docs/concepts/function-components)
-- [No Boilerplate Yew intro/overview](https://www.youtube.com/watch?v=P4LMfkFLRsI)
-- Brooks Builds tutorials [Axum](https://www.youtube.com/playlist?list=PLrmY5pVcnuE-_CP7XZ_44HN-mDrLQV4nS) | [Yew](https://www.youtube.com/playlist?list=PLrmY5pVcnuE_R5qJ0o30eGw77bWmnrUtL)
-- [Rust `image` docs for eventual/possible DB setup](https://docs.rs/image/latest/image)
-- [Overview of a typical(?) Axum/Yew server](https://robert.kra.hn/posts/2022-04-03_rust-web-wasm)
-- Tracing [crate](https://docs.rs/tracing/latest/tracing) | [subscriber](https://docs.rs/tracing-subscriber/latest/tracing_subscriber)
-
+1 | Styling         | TBD           | <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/16)
+2 | Find favicon    | TBD           | <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/15)
+3 | Pause/Resume    | TBD           | <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/14)
+4 | Fix DuelingBook | TBD           | <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/17)
+5 | Deck stats      | TBD           | <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/5)
+6 | Balance draft   | TBD           | <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/6)
+7 | Deck exporting  | TBD           | - export to YDK will be included as part of Goal 6 <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/7)
+8 | DB integration  | TBD           | <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/8)
+9 | Deploy          | TBD           | <br /> [Github issue here](https://github.com/hadan24/ygo-draft/issues/10)
 
 ### Example Deck Stats
 For whenever I get to them:
