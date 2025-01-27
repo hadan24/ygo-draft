@@ -5,6 +5,23 @@
 A small web app simulating a Hearthstone-style draft using the modern Yu-Gi-Oh! card pool.
 This is a personal project to solidify and improve on my skills from university as well as boost my resume/portfolio!
 
+### Building
+
+Until this is deployed, here are the dev build steps:
+
+1. Install [Rust](https://www.rust-lang.org/tools/install) if you don't have it
+2. Clone/download the repo through your preferred method
+3. Open a terminal and go to into the `backend` folder with it
+4. `cargo add` any dependencies you do not have
+5. Ensure you don't have any other programs listening on port `localhost:8000`
+6. `cargo run` the backend!
+7. Leave that terminal running in the background and open a new terminal
+8. Use the new terminal to go into the `frontend` folder
+9. `cargo add` any missing dependencies and install [Trunk](https://trunkrs.dev/)
+10. Ensure you don't have any other programs listening on `localhost:8080`
+11. `trunk serve` the frontend! (use `--open` to automatically open the site in your browser)
+
+
 ### Schedule
 Number  | Goal      | Timeline      | Notes
 --|-----------------|---------------|--------

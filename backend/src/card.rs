@@ -48,7 +48,7 @@ impl CardPool {
     }
     
     pub fn generate_draft_options(pool: &[Card]) -> DraftOptions {
-        let mut rng = rand::thread_rng();
+        let mut rng = rand::rng();
         let i_s = rand::seq::index::sample(&mut rng, pool.len(), 3)
             .into_vec();
         let options = [

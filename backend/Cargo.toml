@@ -6,11 +6,11 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-axum = { version = "0.7.9", features = ["macros", "tower-log", "tracing"] }
-rand = { version = "0.8.5", features = ["alloc"] }
-reqwest = { version = "0.12.9", features = ["json"] }
-serde = { version = "1.0.215", features = ["derive"] }
-tokio = { version = "1.42.0", features = ["rt-multi-thread", "signal"] }
+axum = { version = "0.8.1", features = ["macros", "tower-log", "tracing"] }
+rand = { version = "0.9.0", features = ["alloc"] }
+reqwest = { version = "0.12.12", features = ["json"] }
+serde = { version = "1.0.217", features = ["derive"] }
+tokio = { version = "1.43.0", features = ["rt-multi-thread", "signal"] }
 tower-http = { version = "0.6.2", features = ["cors", "trace"] }
 tracing = { version = "0.1.41", features = ["log"] }
 tracing-subscriber = { version = "0.3.19", features = ["env-filter"] }
